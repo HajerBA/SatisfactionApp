@@ -1,0 +1,48 @@
+
+
+    <!--<select [(ngModel)]="selected" class="form-control">
+        
+        <option *ngFor="let quest of questions" [ngValue]="quest">
+       <label for="quest"> Q n°: </label> {{quest.id}}   {{quest.content}}
+        </option>
+      </select>
+      <form (ngSubmit)="onSubmit()">
+      <section *ngIf="selected">
+        <p *ngFor="let rep of selected.Responses">
+          <input type="radio" name="reponse" [(ngModel)]="selectedRep" value="{{rep.content}}">{{rep.content}}
+        </p>
+      </section>
+    
+      <button type="submit" class="btn btn-success">Submit</button>
+  </form>-->
+
+	
+<!--The content below is only a placeholder and can be replaced.-->
+<!--<div style="margin:50px;">
+  <div class="alert alert-info"><b>welcome xxx , this is list of forms in your app</b></div>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Image</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="!loader">
+        <tr *ngFor="let emp of employees.data">
+          <td>{{emp.titre}}</td>
+          <td>{{emp.contenu}}</td>
+          <td><img width="50" src="{{emp.avatar}}"/></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>-->
+
+ 
+        <app-api-user></app-api-user>
+   
+
+  
+  

@@ -5,6 +5,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
+
+
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import {QuestionService } from './question.service';
@@ -18,7 +20,7 @@ import { QuestionReponseComponent } from './question-reponse/question-reponse.co
 import { ApiUserComponent } from './api-user/api-user.component';
 import { ApiUserService } from './api-user.service';
 import { SondageComponent } from './sondage/sondage.component';
-import { ChartsModule } from 'ng2-charts/ng2-charts';
+
 
 
 
@@ -30,9 +32,9 @@ const appRoutes: Routes = [
   {path: 'AffForms', component: FormsComponent},
   {path: 'Authentif', component: AuthentificationComponent},
   {path: 'AffFormsList', component: FormsListComponent},
-  {path: '', component: AccueilComponent},
+  {path: 'Accueil', component: AccueilComponent},
   {path: 'Question/:id', component: QuestionReponseComponent },
-  //{path: '', component: ApiUserComponent}
+  {path: '', component: ApiUserComponent}
 
 
  
@@ -59,7 +61,7 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes),
     NgbModule, NgbAlertModule,NgbPaginationModule,
-    HttpClientModule,ChartsModule
+    HttpClientModule
   ],
   providers: [ ApiUserService,QuestionService],
   bootstrap: [AppComponent]

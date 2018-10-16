@@ -32,13 +32,15 @@ export class StatisticsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.id = parseInt(this.route.snapshot.paramMap.get("id")); 
     this.service.getAllStat(this.id).subscribe(u => {
       this.stats = u;
     
     }); 
     
+    
   }
-  public pieChartLabels:string[] = ["Peu Satisfait", "satisfait", "Non satisfait", "tres satisfait", "autre"];
+  public pieChartLabels:string[] = [this.stats.title];
     public pieChartData:number[] = [21, 39, 10, 14, 16];
     public pieChartType:string = 'pie';
     public pieChartOptions:any = {'backgroundColor': [

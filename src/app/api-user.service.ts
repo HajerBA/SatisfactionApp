@@ -1,49 +1,53 @@
 import { Injectable } from '@angular/core';
-import {HttpClient,HttpHeaders, HttpParams} from '@angular/common/http'
+import {HttpClient,HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs';
 
+import { SondageInterface } from './entities/sondage';
 
+import { Newsondage } from './entities/newsondage';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ApiUserService {
-  [x: string]: any;
   url='http://satisfactionsurveyapi.azurewebsites.net/api/FormulaireApi';
+  
  //id=Sondage.id;
   constructor(private http: HttpClient) { 
    
   }
-  //allforms
-  getAllForms(): Observable<Object>{ 
+  getAllUser(): Observable<Object>{ 
 
-    const httpOptions={
-
-      headers:new HttpHeaders({'Content-Type': 'application/json'})
-    };
+    
       return this.http.get<Object>('http://satisfactionsurveyapi.azurewebsites.net/api/FormulaireApi/');
 
   }
-//formsbyId
- getFormById(id : number): Observable<Object>
+  getAllQ(id : number): Observable<SondageInterface>
   { 
+     //let headers: HttpHeaders = new HttpHeaders();
   const httpOptions={
-
+   
     headers:new HttpHeaders({'Content-Type': 'application/json'})
      };
 
-    return this.http.get<Object>('http://satisfactionsurveyapi.azurewebsites.net/api/FormulaireApi/'+id);
-
-        
+     console.log(id);
+    return this.http.get<SondageInterface>(`http://satisfactionsurveyapi.azurewebsites.net/api/FormulaireApi/${id}`);
+   // .pipe( tap(_ => this.log(`fetched question id=${id}`)), catchError(this.handleError<Object>(`getQuestion id=${id}`)));
+   
     }
-  
+
    
 
-  addRep(data: Response) : Observable<any> {
-    return this.http.post('http://satisfactionsurveyapi.azurewebsites.net/api/FormulaireApi/', JSON.stringify(data));
-
-
+ 
+  addSondage(data:Newsondage) :Observable<any> {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers.set('Content-Type', 'application/json');
+    console.log("data:"+JSON.stringify(data));
+    return this.http.post('http://satisfactionsurveyapi.azurewebsites.net/api/SondageApi',JSON.stringify(data), { headers: headers })
+    
+    
   }
   getAllStat(id : number): Observable<Object>
   { 

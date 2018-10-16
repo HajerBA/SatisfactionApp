@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forms-list.component.css']
 })
 export class FormsListComponent implements OnInit {
-
+  age: number;
   constructor() { }
 
   ngOnInit() {

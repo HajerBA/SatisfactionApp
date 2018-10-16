@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiUserService } from '../api-user.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { ComposantQuestion } from '../entities/composantquestion';
+import { Composant } from '../entities/composant';
+import { ReponseInterface } from '../entities/reponse';
+import {Reponse} from '../Reponse'
+import { Newsondage } from '../entities/newsondage';
 
 @Component({
   selector: 'app-api-user',
@@ -11,36 +15,72 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ApiUserComponent implements OnInit {
   selected;
   selectedRep;
-  SelectedQ;
-  idf:number;
- questions:any;
+  
+  idf: any;
+  composants: Composant[];
+  typeQuestion: Number;
+  question: ComposantQuestion;
+  reponses: ReponseInterface[];
   sondages: any;
-  //Composant : Array<Question>;
-  constructor(private service: ApiUserService,private router: Router,
-    private route: ActivatedRoute) {
-      
-     }
+  age?: number;
+  sex?: string;
+   localisation: string;
+   SelectedQ: Composant;
+  constructor(private service: ApiUserService, private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    
-    this.service.getAllForms().subscribe(u => {
-      this.sondages = u;
-    //  this.idf=this.sondages.Composant.id;
-      this.sondages.forEach(element => {
-        this.idf=element.id;
-        
-       
-     });
-    }); 
-   
+    this.service.getAllUser().subscribe(u => {
+      this.sondages = u
+    });
   }
-  onSubmit(): void {
+  sondageChange(id) {
+    console.log(id, 'id');
+    
+    this.idf = id;
+    this.selected = id;
+    this.service.getAllQ(id).subscribe(q => {
+      this.composants = q.Composant;
+     
+      console.log(this.composants);
+    });
+  }
+  questionChange(question: Composant) {
+    this.SelectedQ = question;
+    this.question = question.Question;
+    this.reponses = question.Question.Reponse
+    this.typeQuestion = question.idTypeReponse;
  
     
-  
-
-    this.router.navigate(['/Statistics']);
+    console.log(this.SelectedQ);
+    console.log(this.reponses);
+    console.log(this.typeQuestion);
     
-}
+    
+
+  }
+
+  onSubmit(event): void {
+    let newSondage:Newsondage = {
+      Date: new Date(),
+      idFormulaire:this.selected,
+      List: [this.selectedRep],
+      Sonde: {
+        age: this.age,
+        sex: this.sex,
+        localisation: this.localisation
+
+      }
+
+    }
+    console.log(newSondage);
+    this.service.addSondage(newSondage).subscribe(value => {
+      console.log("value after post",value);
+      
+    })
+    
+   this.router.navigate(['/Statistics',this.idf]);
+
+  }
 
 }

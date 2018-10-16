@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { interval } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import { Question } from '../Question';
+import { QuestionService } from '../question.service';
+import { SondageServiceService } from '../sondage-service.service';
 
-import {HttpClient} from '@angular/common/http';
-
+import { FormGroup, FormControl } from "@angular/forms";
+import { Sondage } from '../sondage';
 import { Router,ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-forms',
@@ -15,46 +15,41 @@ import { Observable } from 'rxjs';
 export class FormsComponent implements OnInit {
   selected;
   selectedRep;
- 
+ quest:Question;
+  questions: Array<Question>;
+  newRep: Sondage;
   dateModel: any;
-   private loader = false;
-	private id = 1;
-	private employees : any;
-	pollingData: any;
-	errors: any; 
-  constructor( public http:HttpClient,private router: Router,
+  
+  constructor(private service: QuestionService,private serviceSondage: SondageServiceService, private router: Router,
     private route: ActivatedRoute) {
-   
-  	//this.employees.data = [];
-		this.loader = true;
-		this.pollingData =  interval(5000).pipe(
-      switchMap(()  => http.get('//satisfactionsurveyapi.azurewebsites.net/api/FormulaireApi/Formulaire?id='+this.id)),
-		map(
-			data => {
-				this.employees = data; 
-				this.loader = false;
-				console.log(data);// see console you get output every 5 sec
-				this.id = this.id +1;
-				//reset page number
-				
-			},
-			error => {
-				this.errors = error;
-			}
-			));
-	}
- 
-
-
-    
+    this.service.getAll().subscribe(a => {
+      this.questions = a;
+      this.questions.sort((q, z) => q.theme.localeCompare(z.theme));
+      });
+      this.newRep = new Sondage();
+   }
 
    ngOnInit(){
     const id: number = parseInt(this.route.snapshot.params.id, 0);
-   
-
-	
+    
   }
 
-  
+  onSubmit(): void {
+    // génération du fake id
+    let reps = new Array<Sondage>();
+    this.serviceSondage.getAll().subscribe(a => reps = a);
+    this.newRep.id = reps.length + 1;
+    // ajout de l'article
+   // this.newRep.dat = new Date(this.dateModel.year, this.dateModel.month, this.dateModel.day);
+    this.serviceSondage.addReponseSondage(this.selectedRep);
+    console.log(this.selectedRep);
+    this.newRep = new Sondage();
+
+    this.router.navigate(['/Statistics']);
+    
+}
+ 
+
+
 
 }

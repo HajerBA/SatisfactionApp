@@ -7,8 +7,8 @@ export class Sondage {
         dat: Date; 
         idFormulaire: number; 
         idSonde : number; 
-        Respons:Array<Reponse>;
-        ChoixRespons:Array<ChoixReponse>;
+        Response:Array<Reponse>;
+        ChoixResponse:Array<ChoixReponse>;
 
 
        

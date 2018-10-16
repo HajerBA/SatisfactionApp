@@ -9,7 +9,7 @@ import { Observable, of } from 'rxjs';
 export class SondageServiceService {
   responses: Array<Sondage>;
   constructor() {
-    this.responses = SONDAGES;
+    //this.responses = SONDAGES;
    }
 
   addReponseSondage(rep: Sondage): void {

@@ -15,15 +15,16 @@
 <form (ngSubmit)="onSubmit($event)">
 
     <ul>
-    <li  class="form-control" *ngFor="let question of composants;let i = index" value="question" >
+    <li  *ngFor="let question of composants;let i = index" value="question" >
       <h4>Q n° {{i+1}} :  {{question.Question.contenu}}</h4>
+       <br/>
       <section *ngIf=" question.TypeReponse.id == 1;">
-        <p *ngFor="let rep of question.Question.reponses">
+        <p *ngFor="let rep of question.Question.Reponse">
           <input  type="radio" name="reponse" [(ngModel)]="selectedRep" value="{{rep.contenu}}">{{rep.contenu}}
         </p>
       </section>
       <section *ngIf=" question.TypeReponse.id == 2;">
-        <p *ngFor="let rep of reponses">
+        <p *ngFor="let rep of  question.Question.Reponse">
           <input type="checkbox" name="reponse" [(ngModel)]="selectedRep" value="{{rep.contenu}}">{{rep.contenu}}
         </p>
       </section>

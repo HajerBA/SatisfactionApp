@@ -61,13 +61,19 @@ export class ApiUserComponent implements OnInit {
   }
 
   onSubmit(event): void {
+    if(this.sex="male"){
+      console.log(this.sex);
+    } else  {
+      console.log("female");
+
+    }
     let newSondage:Newsondage = {
       Date: new Date(),
       idFormulaire:this.selected,
       List: [this.selectedRep],
       Sonde: {
         age: this.age,
-        sex: this.sex,
+        sex:this.sex,
         localisation: this.localisation
 
       }

@@ -20,6 +20,7 @@ import { QuestionReponseComponent } from './question-reponse/question-reponse.co
 import { ApiUserComponent } from './api-user/api-user.component';
 import { ApiUserService } from './api-user.service';
 import { SondageComponent } from './sondage/sondage.component';
+import { StatIdComponent } from './stat-id/stat-id.component';
 
 
 
@@ -32,10 +33,11 @@ const appRoutes: Routes = [
   {path: 'AffForms', component: FormsComponent},
   {path: 'Authentif', component: AuthentificationComponent},
   {path: 'AffFormsList', component: FormsListComponent},
-  {path: 'Accueil', component: AccueilComponent},
+  {path: '', component: AccueilComponent},
   {path: 'Question/:id', component: QuestionReponseComponent },
-  {path: '', component: ApiUserComponent}
-
+  //{path: '', component: ApiUserComponent},
+  {path: 'Statistics/:id', component: StatIdComponent },
+  
 
  
 
@@ -53,7 +55,8 @@ const appRoutes: Routes = [
     AccueilComponent,
     QuestionReponseComponent,
     ApiUserComponent,
-    SondageComponent
+    SondageComponent,
+    StatIdComponent
     
   ],
   imports: [

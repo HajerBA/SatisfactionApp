@@ -14,7 +14,7 @@ import { Newsondage } from './entities/newsondage';
 export class ApiUserService {
   url='http://satisfactionsurveyapi.azurewebsites.net/api/FormulaireApi';
   
- //id=Sondage.id;
+  stats: Array<object>;
   constructor(private http: HttpClient) { 
    
   }
@@ -49,7 +49,7 @@ export class ApiUserService {
     
     
   }
-  getAllStat(id : number): Observable<Object>
+  getAllStat(): Observable<Object>
   { 
     
   const httpOptions={
@@ -57,11 +57,12 @@ export class ApiUserService {
     headers:new HttpHeaders({'Content-Type': 'application/json'})
      };
 
-     console.log(id);
-    return this.http.get<Object>(`http://satisfactionsurveyapi.azurewebsites.net/api/StatistiqueApi/${id}`);
+     //console.log(id);
+    return this.http.get<Object>(`http://satisfactionsurveyapi.azurewebsites.net/api/StatistiqueApi/`);
    
    
     }
+    
 }
 
 

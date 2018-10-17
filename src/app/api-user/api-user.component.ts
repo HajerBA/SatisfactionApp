@@ -6,6 +6,7 @@ import { Composant } from '../entities/composant';
 import { ReponseInterface } from '../entities/reponse';
 import {Reponse} from '../Reponse'
 import { Newsondage } from '../entities/newsondage';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-api-user',
@@ -26,6 +27,7 @@ export class ApiUserComponent implements OnInit {
   sex?: string;
    localisation: string;
    SelectedQ: Composant;
+  
   constructor(private service: ApiUserService, private router: Router,
     private route: ActivatedRoute) { }
 
@@ -45,20 +47,22 @@ export class ApiUserComponent implements OnInit {
       console.log(this.composants);
     });
   }
+  reponsChange(event){
+    console.log(event);
+  }
   questionChange(question: Composant) {
     this.SelectedQ = question;
     this.question = question.Question;
     this.reponses = question.Question.Reponse
     this.typeQuestion = question.idTypeReponse;
- 
     
     console.log(this.SelectedQ);
     console.log(this.reponses);
     console.log(this.typeQuestion);
-    
-    
+       
 
   }
+ 
 
   onSubmit(event): void {
     if(this.sex="male"){
@@ -70,11 +74,9 @@ export class ApiUserComponent implements OnInit {
     let newSondage:Newsondage = {
       Date: new Date(),
       idFormulaire:this.selected,
-      List: [this.selectedRep],
+      ChoixReponse: [this.selectedRep],
       Sonde: {
-        age: this.age,
-        sex:this.sex,
-        localisation: this.localisation
+       
 
       }
 
@@ -85,7 +87,7 @@ export class ApiUserComponent implements OnInit {
       
     })
     
-   this.router.navigate(['/Statistics',this.idf]);
+   //this.router.navigate(['/Statistics',this.idf]);
 
   }
 

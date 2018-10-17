@@ -18,39 +18,35 @@
     <li  *ngFor="let question of composants;let i = index" value="question" >
       <h4>Q n° {{i+1}} :  {{question.Question.contenu}}</h4>
        <br/>
+       <form>
       <section *ngIf=" question.TypeReponse.id == 1;">
         <p *ngFor="let rep of question.Question.Reponse">
-          <input  type="radio" name="reponse" [(ngModel)]="selectedRep" value="{{rep.contenu}}">{{rep.contenu}}
+          <input  type="radio" name="reponse" [ngModel]="selectedRep" (change)="reponsChange($event.target.value)" value="{{rep.contenu}}">{{rep.contenu}}
         </p>
       </section>
+    </form>
+    <form >
       <section *ngIf=" question.TypeReponse.id == 2;">
-        <p *ngFor="let rep of  question.Question.Reponse">
-          <input type="checkbox" name="reponse" [(ngModel)]="selectedRep" value="{{rep.contenu}}">{{rep.contenu}}
+        <p *ngFor="let repp of  question.Question.Reponse">
+          <input type="checkbox" name="repons" [ngModel]="selectedRep" value="{{repp.contenu}}">{{repp.contenu}}
         </p>
       </section>
+    </form>
+    <form>
       <section *ngIf=" question.TypeReponse.id == 3;">
-          <textarea [(ngModel)]="selectedRep" name="reponse" rows="10" cols="30"></textarea>
+          <textarea [ngModel]="selectedRep" name="repon" rows="10" cols="30"></textarea>
       </section>
+    </form>
     </li>
     </ul>
 
 <br />
-<!--<form (ngSubmit)="onSubmit($event)">
-  <section *ngIf="selectedQ && typeQuestion == 1;">
-    <p *ngFor="let rep of reponses">
-      <input  type="radio" name="reponse" [(ngModel)]="selectedRep" value="{{rep.contenu}}">{{rep.contenu}}
-    </p>
-  </section>
-  <section *ngIf="selectedQ && typeQuestion == 2;">
-    <p *ngFor="let rep of reponses">
-      <input type="checkbox" name="reponse" [(ngModel)]="selectedRep" value="{{rep.contenu}}">{{rep.contenu}}
-    </p>
-  </section>
-  <section *ngIf="selectedQ && typeQuestion == 3;">
-      <textarea [(ngModel)]="selectedRep" name="reponse" rows="10" cols="30"></textarea>
-  </section>
-  <br />-->
-  <button type="submit" class="btn btn-success">Submit</button>
+
+  <button type="submit" class="btn btn-outline-secondary" ngbPopover="Réponse envoyée avec succès!"
+  popoverClass="my-custom-class">
+  Submit
+</button>
+ 
 </form>
 </section>
 

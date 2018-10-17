@@ -1,21 +1,25 @@
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+<br />
+<br />
+<br />
+<br />
+<br />
+<table class="table">
+    <thead>
+      <tr>
+        
+        <th>TitreFormulaire</th>
+        <th>Date de clôture</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of stats">
+        <td>{{ s.Titre }}</td>
+        <td>{{ s.DateCloturation }}</td>
+        <td><a routerLink="/Statistics/{{s.Id}}">voir statistiques</a></td>
+        
+      </tr>
+    </tbody>
+</table>
 
 
-<div class="container">
-  <div class="col-sm-4 text-center">
-    <h2 class="text-center">Stat reponses</h2>
-    <!--<canvas baseChart
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [chartType]="pieChartType"
-          [options]="pieChartOptions"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>-->
-      </div>
-</div>
-
- 

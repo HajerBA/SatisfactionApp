@@ -1,4 +1,4 @@
-import { Reponse } from "./Reponse";
+//import { Reponse } from "./Reponse";
 import { ChoixReponse } from "./choix-reponse";
 
 export class Sondage {
@@ -7,7 +7,7 @@ export class Sondage {
         dat: Date; 
         idFormulaire: number; 
         idSonde : number; 
-        Response:Array<Reponse>;
+       // Response:Array<Reponse>;
         ChoixResponse:Array<ChoixReponse>;
 
 

@@ -1,11 +1,22 @@
+<br/>
+<br/>
+<br/>
+<br/>
 
 <div class="container">
     <div class="col-sm-4 text-center">
       <h2 class="text-center">Statistiques des  réponses</h2>
-      <div class="container-row">
+      <ul >
+         <li >
+      <div  class="container-row">
+       <!--*ngFor="let u of stats.TauxChoixReponse.Reponses" value="u.Taux" > <canvas  *ngFor="let chart of charts; let i = index" id="canvas{{i}}">{{charts}}</canvas>--> 
+         <canvas   id="myChart" width="400" height="400"></canvas>
        
-       <canvas id="myChart" width="400" height="400"></canvas>
       </div>
+       </li>
+      </ul>
+      
+    
       
     </div>
   </div>

@@ -4,9 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ComposantQuestion } from '../entities/composantquestion';
 import { Composant } from '../entities/composant';
 import { ReponseInterface } from '../entities/reponse';
-import {Reponse} from '../Reponse'
+
 import { Newsondage } from '../entities/newsondage';
-import { Subject } from 'rxjs';
+
+import { ChoixReponse } from '../choix-reponse';
 
 @Component({
   selector: 'app-api-user',
@@ -15,8 +16,8 @@ import { Subject } from 'rxjs';
 })
 export class ApiUserComponent implements OnInit {
   selected;
-  selectedRep;
-  
+  selectedRep:ChoixReponse[];
+ // ChoixReponse:Array<Object>;
   idf: any;
   composants: Composant[];
   typeQuestion: Number;
@@ -24,8 +25,8 @@ export class ApiUserComponent implements OnInit {
   reponses: ReponseInterface[];
   sondages: any;
   age?: number;
-  sex?: string;
-   localisation: string;
+  sex?: boolean;
+  localisation?: string;
    SelectedQ: Composant;
   
   constructor(private service: ApiUserService, private router: Router,
@@ -50,34 +51,39 @@ export class ApiUserComponent implements OnInit {
   reponsChange(event){
     console.log(event);
   }
-  questionChange(question: Composant) {
+
+  
+ /* questionChange(question: Composant) {
     this.SelectedQ = question;
     this.question = question.Question;
-    this.reponses = question.Question.Reponse
+    this.reponses = question.Question.Reponse;
     this.typeQuestion = question.idTypeReponse;
-    
-    console.log(this.SelectedQ);
-    console.log(this.reponses);
-    console.log(this.typeQuestion);
+  
+    console.log("this.SelectedQ" + this.SelectedQ);
+    console.log("this.reponses" + this.reponses);
+    console.log("this.typeQuestion" + this.typeQuestion);
        
 
-  }
+  }*/
  
 
   onSubmit(event): void {
-    if(this.sex="male"){
-      console.log(this.sex);
-    } else  {
-      console.log("female");
-
-    }
+    
+     /* this.reponses.forEach(element => {
+      let cr =  new ChoixReponse();
+      cr.contenu = element.contenu;
+      console.log("cr" + cr);
+      
+      this.selectedRep.push(cr);
+    });*/
+    console.log(this.selectedRep);
+  
     let newSondage:Newsondage = {
       Date: new Date(),
       idFormulaire:this.selected,
-      ChoixReponse: [this.selectedRep],
+      ChoixReponse: this.selectedRep,
       Sonde: {
        
-
       }
 
     }
@@ -87,7 +93,6 @@ export class ApiUserComponent implements OnInit {
       
     })
     
-   //this.router.navigate(['/Statistics',this.idf]);
 
   }
 

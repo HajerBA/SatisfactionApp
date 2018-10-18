@@ -16,10 +16,10 @@ export class StatisticsComponent implements OnInit {
   private route: ActivatedRoute) {   }
 
   ngOnInit() {
-    this.id = 1;
+   
    this.service.getAllStat().subscribe(u => {
       this.stats = u;
-
+    
    });
     }
   }

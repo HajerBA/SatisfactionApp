@@ -2,43 +2,45 @@
 <br/>
 <br/>
 <br/>
-<form (ngSubmit)="onSubmit()">
-  <ngb-accordion [closeOthers]="true" activeIds="static-1">
+
+  <ngb-accordion [closeOthers]="false" activeIds="static-1">
     
       <ngb-panel id="static-1">
           <ng-template ngbPanelTitle>
-            <span>&#9733; <b>General   informations</b> &#9733;</span>
+            <span>&#9733; <b>Information Générale  (vous n'êtes pas obligé à répondre)</b> &#9733;</span>
           </ng-template>
           <ng-template ngbPanelContent>
           
-                 
+            <form (ngSubmit)="onSubmit($event)">
                           <div class="form-group">
-                           
-                             <input type="number" class="form-control" id="age" name="age" placeholder="Age" [(ngModel)]="age">
+                           <!-- [(ngModel)]="age"-->
+                             <input type="number" class="form-control" id="age" name="age" placeholder="Age(number!)">
                           </div>
                      
-                          <div class="form-group">
-                            
-                            <input type="radio"  id="sex" name="sex" placeholder="sex" >Homme  
+                          <div  class="form-group">
+                            <!-- [(ngModel)]="sex"-->
+                            <input  type="radio"  id="sex" name="sex" placeholder="sex" >Homme  {{s}}
                             <input type="radio"  id="sex"  name="sex" placeholder="sex" > Femme
   
                           </div>
                           <div class="form-group">
-                                 
-                                  <input type="text" class="form-control" id="localisation" name="localisation" placeholder="localisation">
+                                 <!-- [(ngModel)]="localistion"-->
+                                  <input  type="text" class="form-control" id="localisation" name="localisation" placeholder="localisation">
                           </div>
-                     
+                        </form>
            
           </ng-template>
         </ngb-panel>
       <ngb-panel id="static-2">
         <ng-template ngbPanelTitle>
-            <span>&#9733; <b>Start the questionnaire </b>  &#9733;</span>
+            <span>&#9733; <b>Commencer le  questionnaire </b>  &#9733;</span>
         </ng-template>
         <ng-template ngbPanelContent>
-            <app-forms></app-forms>
+           <!-- <app-forms></app-forms>-->
+            <!---->
+            <app-api-user class="position"></app-api-user>
         </ng-template>
       </ngb-panel>
    
     </ngb-accordion>
-   </form>
+  

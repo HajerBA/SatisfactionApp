@@ -62,6 +62,18 @@ export class ApiUserService {
    
    
     }
+    getOneStat(id): Observable<Object> {
+
+      const httpOptions = {
+  
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      };
+  
+      //console.log(id);
+      return this.http.get<Object>(`http://satisfactionsurveyapi.azurewebsites.net/api/StatistiqueApi/${id}`);
+  
+  
+    }
     
 }
 
